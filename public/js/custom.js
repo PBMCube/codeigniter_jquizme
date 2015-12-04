@@ -58,7 +58,7 @@ $(document).ready(function () {
 	};
 	$("#quizArea").jQuizMe(quizMulti, options);
 
-// Setting up jquizme sample demo page
+
 
 // auto-generate carousel indicator html //
 var myCarousel = $("#myCarousel");
