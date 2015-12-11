@@ -59,8 +59,8 @@ class Jquizme extends CI_Controller {
     
     
      //write to json file
-    $fp = fopen('empdata.json', 'w');
-    fwrite($fp, "var quiz = " . $emparray);
+    $fp = fopen('empdata.js', 'w');
+    fwrite($fp, " var quiz = { multiList: [{" . $emparray . "}]");
     fclose($fp);
     
 
@@ -69,7 +69,8 @@ class Jquizme extends CI_Controller {
     $files_to_zip = array(
 	'public/js/jQuizMe-2.2.1.min.js',
 	'public/css/jQuizMe.css',
-	'empdata.json'
+        'empdata.js'
+	//'empdata.json'
 );
     
 //if true, good; if false, zip creation failed
