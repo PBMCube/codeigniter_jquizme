@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Quiz_model extends MY_Model
+class Questions_model extends MY_Model
 {
- public $_table = 'quiz';
+ public $_table = 'questions';
 }

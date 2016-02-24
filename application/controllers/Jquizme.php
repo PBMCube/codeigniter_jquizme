@@ -3,11 +3,16 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Jquizme extends CI_Controller {
+class Jquizme extends Admin_Controller {
 
     public function __construct() {
         parent::__construct();
 
+        
+        $this->load->database();
+	$this->load->library(array('form_validation'));
+	
+        
         function create_zip($files = array(), $destination = '', $overwrite = false) {
             //if the zip file already exists and overwrite is false, return false
             if (file_exists($destination) && !$overwrite) {
@@ -54,10 +59,50 @@ class Jquizme extends CI_Controller {
         //$data['main_content'] = 'jquizme';
         $this->load->view('jquizme');
     }
+    
+    public function create() {
+
+        //$data['main_content'] = 'jquizme';
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('jquizme_create');
+        } else {
+          /*   
+            $title = $this->input->post('title');
+            $text = $this->input->post('type');
+            $ques = $this->input->post('ques');
+            $ans = $this->input->post('ans');
+            $ansInfo = $this->input->post('ansInfo');
+            $ansSel = $this->input->post('ansSel');
+            */
+            
+            
+        
+
+    
+    for ($i=0;$this->input->post('question['.$i.']')>0;$i++) {
+    echo '<hr>Question: '.$this->input->post('question['.$i.'][ques]');
+    echo '<br>Answer: '.$this->input->post('question['.$i.'][ans]');
+    echo '<br>Answer info: '.$this->input->post('question['.$i.'][ansInfo]');
+    //echo '<br>position: '.$this->input->post('question['.$i.'][ques]');
+    //echo '<br>dept: '.$this->input->post('question['.$i.'][ques]');
+    }
+
+        
+          
+            
+            //echo json_encode($data);
+            //var_dump(json_encode($data));die();
+            
+        }
+    }
+    
+    
 
     public function zip() {
 
-        $this->load->model('Quiz_model', 'quiz');
+        $this->load->model('Questions_model', 'quiz');
         //var_dump($this->quiz->get_all());die();
 
 
