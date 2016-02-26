@@ -46,6 +46,21 @@
     <script src="<?php echo base_url("public/dist/js/pages/dashboard.js"); ?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url("public/dist/js/demo.js"); ?>"></script>
+    
+    
+     <!-- iCheck -->
+      <script src="<?php echo base_url("public/plugins/iCheck/icheck.min.js"); ?>"></script>
+ 
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+  
 
 </body>
 </html>

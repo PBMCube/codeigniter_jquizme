@@ -11,6 +11,8 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+        
+        
         <link rel="stylesheet" href="<?php echo base_url("public/bootstrap/css/bootstrap.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/css/AdminLTE.min.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/css/skins/_all-skins.min.css"); ?>">
@@ -20,6 +22,8 @@
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/datepicker/datepicker3.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/daterangepicker/daterangepicker-bs3.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"); ?>">
+        
+        
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
