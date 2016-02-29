@@ -31,7 +31,8 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                          
+                             <img src = "<?=base_url('public/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Support Team
@@ -43,7 +44,8 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                           
+                             <img src = "<?=base_url('public/dist/img/user3-128x128.jpg')?>" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -55,7 +57,8 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                           
+                             <img src = "<?=base_url('public/dist/img/user4-128x128.jpg')?>" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Developers
@@ -67,7 +70,9 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                          
+                              <img src = "<?=base_url('public/dist/img/user3-128x128.jpg')?>" class="img-circle" alt="User Image"/>
+                            
                           </div>
                           <h4>
                             Sales Department
@@ -79,7 +84,8 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                           
+                             <img src = "<?=base_url('public/dist/img/user4-128x128.jpg')?>" class="img-circle" alt="User Image"/>
                           </div>
                           <h4>
                             Reviewers
@@ -207,15 +213,21 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  
+                   <img src = "<?=base_url('public/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><!-- Alexander Pierce --><?php echo  $user->first_name; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                   <?php if ($loggedin): ?>
+                      <img src = "<?=base_url('public/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
+                   <?php else: ?>
+                    <img src = "<?=base_url('public/dist/img/profile-photo-placeholder.jpg')?>" class="img-circle" alt="User Image">
+                   <?php endif; ?>
                     <p>
-                      Alexander Pierce - Web Developer
+                        <?php echo 'Hi ' . $user->first_name; ?>
+                       <!--Alexander Pierce - Web Developer -->
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -237,7 +249,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<?php echo site_url('user/logout');?>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -257,7 +269,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+              <img src = "<?=base_url('public/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
               <p>Alexander Pierce</p>
@@ -519,7 +531,8 @@
                 <div class="box-body chat" id="chat-box">
                   <!-- chat item -->
                   <div class="item">
-                    <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+                  
+                    <img src = "<?=base_url('public/dist/img/user4-128x128.jpg')?>" alt="user image" class="online"/>
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
@@ -541,7 +554,8 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                   <div class="item">
-                    <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
+                    
+                     <img src = "<?=base_url('public/dist/img/user3-128x128.jpg')?>" alt="user image" class="offline"/>
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
