@@ -50,16 +50,10 @@
     
      <!-- iCheck -->
       <script src="<?php echo base_url("public/plugins/iCheck/icheck.min.js"); ?>"></script>
- 
-    <script>
-      $(function () {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional
-        });
-      });
-    </script>
+      
+           <!-- Custom code -->
+      <script src="<?php echo base_url("public/js/application.js"); ?>"></script>
+
   
 
 </body>

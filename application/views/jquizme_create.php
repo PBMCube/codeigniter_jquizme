@@ -1,61 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>jQuery CloneYa demo</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <style type="text/css">
-            .demo-wrap{
-                margin: 40px auto;
-                display:block;
-                position:relative;
-                max-width:500px;
-            }
-            .inner-wrap, .inner-inner-wrap{
-                margin-left:10px;
-                padding-left:10px;
-                border-left:1px #ccc solid;
-                padding-bottom:10px;
-                margin-bottom:10px;
-            }
-            input, textarea { 
-                padding: 9px; 
-                border: solid 1px #E5E5E5; 
-                outline: 0; 
-                font: normal 13px/100% Verdana, Tahoma, sans-serif; 
-                width: 200px; 
-                background: #FFFFFF; 
-            } 
-
-            textarea { 
-                width: 400px; 
-                max-width: 400px; 
-                height: 150px; 
-                line-height: 150%; 
-            } 
-
-            input:hover, textarea:hover, 
-            input:focus, textarea:focus { 
-                border-color: #C9C9C9; 
-            } 
-
-            .form label { 
-                margin-left: 10px; 
-                color: #999999; 
-            } 
-
-            .submit input { 
-                width: auto; 
-                padding: 9px 15px; 
-                background: #617798; 
-                border: 0; 
-                font-size: 14px; 
-                color: #FFFFFF; 
-            }
-        </style>
-    </head>
-    <body>
-        <!--simple clone demo start-->
+ <!--simple clone demo start-->
 
         <!--simple clone demo end-->
         
@@ -63,16 +6,17 @@
         <div class="nest-clone demo-wrap">
             <h2>Create Asset</h2>
            
-            
-            <?php echo validation_errors(); ?>
+           
 
-<?php echo form_open('Jquizme/create'); ?>
+<form>
 
 <div class="toclone">
                     
                     <p class="name"> 
-                        <input type="text" name="title" id="sname" /> 
-                        <label for="name">Name</label> 
+                      
+                       
+                         <input type="text" name="title" /> 
+                        <label for="name">Title</label> 
                     </p> 
                     
                       <label for="course">Questions type</label><br />
@@ -100,6 +44,18 @@
                                 <label for="ansInfo">answer Info</label> 
                             </p>
                             
+                            
+                            <div class="nest-clone inner-inner-wrap">
+                                <div class="toclone">
+                                    <strong>Answer set</strong>
+                                    <p class="ansSet"> 
+                                        <input type="text" name="ansSet[]" id="addphone" /> 
+                                        <label for="ansSet">Answer option</label> 
+                                    </p>  
+                                    <a href="#" class="clone">clone</a>
+                                    <a href="#" class="delete">delete</a>
+                                </div>
+                            </div>
 
                             
 
@@ -114,15 +70,18 @@
                 </div>
 
                 <p class="submit"> 
-                    <input type="submit" value="Save" /> 
+                   
+                     <input type="button" id="Save" value="Save" />
                 </p> 
 
             </form>
         </div>
         <!--nested clone demo end-->
-    </body>
+ 
 <script type="text/javascript" src="<?php echo base_url("public/js/jquery.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("public/js/jquery-cloneya.min.js"); ?>"></script>
+
+
 
 <script type="text/javascript">
 
@@ -136,12 +95,15 @@ serializeIndex     : true,
 preserveChildCount  : true
 
 });
+
+
         
 
 
-
-
-});
+});  
 
 </script>
-</html>
+
+     <!-- iCheck -->
+      <script src="<?php echo base_url("public/plugins/iCheck/icheck.min.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("public/js/application.js"); ?>"></script>

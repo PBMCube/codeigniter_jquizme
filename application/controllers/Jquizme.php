@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Jquizme extends Admin_Controller {
+class Jquizme extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -57,17 +57,72 @@ class Jquizme extends Admin_Controller {
     public function index() {
 
         //$data['main_content'] = 'jquizme';
-        $this->load->view('jquizme');
+        $this->load->view('jquizme_create');
     }
     
-    public function create() {
+        public function create() {
 
         //$data['main_content'] = 'jquizme';
         $this->form_validation->set_rules('title', 'Title', 'required');
 
+       if ($this->form_validation->run() == FALSE) {
+
+       echo validation_errors();
+           //var_dump(validation_errors());die();
+           
+             //echo '<div class="error">'.validation_errors().'</div>';   
+          
+        } 
+        
+        
+        
+        else {
+          /*   
+            $title = $this->input->post('title');
+            $text = $this->input->post('type');
+            $ques = $this->input->post('ques');
+            $ans = $this->input->post('ans');
+            $ansInfo = $this->input->post('ansInfo');
+            $ansSel = $this->input->post('ansSel');
+            */
+            
+         //echo 'success';
+        
+
+    
+   for ($i=0;$this->input->post('question['.$i.']')>0;$i++) {
+    echo '<hr>Question: '.$this->input->post('question['.$i.'][ques]');
+    echo '<br>Answer: '.$this->input->post('question['.$i.'][ans]');
+    echo '<br>Answer info: '.$this->input->post('question['.$i.'][ansInfo]');
+    
+    //echo '<br>position: '.$this->input->post('question['.$i.'][ques]');
+    //echo '<br>dept: '.$this->input->post('question['.$i.'][ques]');
+   }
+
+        
+          
+            
+            //echo json_encode($data);
+            //var_dump(json_encode($data));die();
+            
+        }
+    }
+    
+    public function create_this() {
+
+        //$data['main_content'] = 'jquizme';
+        
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('jquizme_create');
-        } else {
+        
+            
+          
+        } 
+        
+        
+        
+        else {
           /*   
             $title = $this->input->post('title');
             $text = $this->input->post('type');
