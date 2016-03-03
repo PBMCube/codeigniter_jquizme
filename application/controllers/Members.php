@@ -2,9 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Members extends MY_Controller {
-	
+
 	function __construct()
     {
+        //$this->groups = array('members'); //it means that only the users in members group have access to that particular controller
         parent::__construct();
          $this->load->helper('form');
 		$this->load->library('ion_auth');

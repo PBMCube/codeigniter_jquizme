@@ -38,8 +38,7 @@ class Auth_Controller extends MY_Controller {
         if (!$this->ion_auth->logged_in()) {
             // If not, we send him to the login Page
             redirect('user/admin', 'refresh');
-        }
-        if (!$this->ion_auth->in_group($this->groups)) {
+        } elseif (!$this->ion_auth->in_group($this->groups)) {
             redirect('members', 'refresh');
         } else {
             $this->ion_auth->user()->row();

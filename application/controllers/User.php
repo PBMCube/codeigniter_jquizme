@@ -47,4 +47,27 @@ class User extends MY_Controller {
 	$this->ion_auth->logout();
 	redirect('user/login');
 }
+
+public function activate_user($user_id)
+{
+       
+$user = $this->ion_auth->user($user_id)->row();
+       //echo $user->email . "<br>";
+       //var_dump($user);die();
+     
+$this->ion_auth->activate($user_id);
+
+$this->load->library('email');
+$this->email->from('absmugz09@gmail.com', 'Absolom');
+$this->email->to($user->email);
+
+
+$this->email->subject('You have been activated');
+$this->email->message('Congratulations, You have been activated.');
+
+$this->email->send();
+
+echo 'You have been activated';
+
+}
 }
