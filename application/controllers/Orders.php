@@ -10,15 +10,40 @@ class Orders extends Auth_Controller {
         $this->load->helper('form');
         $this->load->library('ion_auth');
         $this->load->model('Orders_model', 'orders');
+        $this->load->model('Users_courses_model', 'users_courses');
+        $this->load->model('Courses_model', 'courses');
+        
     }
 
     public function create() {
+        
         $user = $this->ion_auth->user()->row();
-        $this->orders->insert(array(
+        
+        $id = $this->orders->insert(array(
             'order_num' => 1003,
             'user_id' => $user->id,
-            '	payed' => 0,
+            'payed' => 0,
         ));
+       
+        
+        if($id) {
+        
+        $this->users_courses->insert(array(
+            'order_id' => $id,
+            'user_id' => $user->id,
+            'course_id' => 1,
+        ));
+        
+        }
+       
+        //Insert into users_courses - user_id, order_id, course_id
     }
+    
+       
+
+        function view($user_id,$course_id) {
+            $has_access = $this->courses->user_has_access($user_id, $course_id);
+            var_dump($has_access);die();
+        }
 
 }
