@@ -39,8 +39,11 @@ class Courses extends CI_Controller {
     
     
     public function view($id) {
-        $row = $this->courses_model->get($id); 
-        var_dump($row);die();
+        //$row = $this->courses_model->get($id);
+         $data['row'] = $this->courses_model->with_topics('fields:name')->get($id); 
+         //var_dump($data);die();
+         $this->load->view('courses_view',$data);
+        
     }
 
 }
