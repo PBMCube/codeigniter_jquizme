@@ -8,5 +8,7 @@
 
 class Topics_model extends MY_Model
 {
- public $_table = 'topics';
+ public $table = 'topics';
+ 
+ 
 }

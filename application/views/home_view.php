@@ -9,6 +9,13 @@
 <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
 </form>
 
+
+<?php foreach ($courses as $course_item): ?>
+
+<a href="<?php echo base_url('courses/view/'.$course_item->id); ?>"><?php echo $course_item->name; ?></a>   
+
+<?php endforeach; ?>
+
        
 
    

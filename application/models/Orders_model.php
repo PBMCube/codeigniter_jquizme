@@ -8,5 +8,5 @@
 
 class Orders_model extends MY_Model
 {
- public $_table = 'orders';
+ public $table = 'orders';
 }

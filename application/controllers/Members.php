@@ -7,13 +7,18 @@ class Members extends MY_Controller {
     {
         //$this->groups = array('members'); //it means that only the users in members group have access to that particular controller
         parent::__construct();
-         $this->load->helper('form');
-		$this->load->library('ion_auth');
+        $this->load->helper('form');
+	$this->load->library('ion_auth');
+        $this->load->model('courses_model');
+        $this->load->model('topics_model');
+        
 	}
 
     public function index()
     {
         //$this->load->view('home_view');
+         $this->data['courses'] = $this->courses_model->get_all();
+         //var_dump($this->data['courses']);die();
         $this->render('home_view');
     }
 

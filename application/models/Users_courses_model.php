@@ -8,6 +8,6 @@
 
 class Users_courses_model extends MY_Model
 {
- public $_table = 'users_courses';
+ public $table = 'users_courses';
 
 }

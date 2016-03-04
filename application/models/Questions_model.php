@@ -8,5 +8,5 @@
 
 class Questions_model extends MY_Model
 {
- public $_table = 'questions';
+ public $table = 'questions';
 }

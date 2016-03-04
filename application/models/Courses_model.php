@@ -8,7 +8,14 @@
 
 class Courses_model extends MY_Model
 {
- public $_table = 'courses';
+ public $table = 'courses';
+ 
+ function __construct()
+    {
+        parent::__construct();
+          $this->has_many['topics'] = array('foreign_model'=>'Topics_model','foreign_table'=>'topics','foreign_key'=>'course_id','local_key'=>'id');
+    }
+
   
 ############################# you put this method inside the courses model ###################################
         
