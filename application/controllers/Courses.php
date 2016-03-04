@@ -38,9 +38,13 @@ class Courses extends CI_Controller {
     }
     
     
-    public function view($id) {
+     public function view($user_id,$course_id) {
         //$row = $this->courses_model->get($id);
-         $data['row'] = $this->courses_model->with_topics('fields:name')->get($id); 
+        $data['has_access'] = $this->courses_model->user_has_access($user_id, $course_id);
+        //echo $this->db->last_query();
+        //exit;
+        //var_dump($data['has_access']);die();
+         $data['row'] = $this->courses_model->with_topics('fields:name')->get($course_id); 
          //var_dump($data);die();
          $this->load->view('courses_view',$data);
         

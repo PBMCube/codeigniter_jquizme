@@ -21,15 +21,17 @@ class Courses_model extends MY_Model
         
 public function user_has_access($user_id, $course_id)
 {
-	if(is_int($user_id) && is_int($course_id))
+	if(is_numeric($user_id) && is_numeric($course_id))
 	{
+  $this->db->select('courses.id');
 		$this->db->where('courses.id',$course_id);
 		$this->db->where('orders.user_id',$user_id);
 		$this->db->where('orders.payed', '1');
 		$this->db->limit(1);
 		$this->db->join('users_courses','courses.id = users_courses.course_id', 'left');
-		$this->db->join('orders','users_courses.order_id = orders.id', 'left');
-		if($this->db->count_all('courses')==1)
+		$this->db->join('orders','users_courses.order_id = orders.order_id', 'left');
+    $query = $this->db->get('courses');
+    if($query->num_rows())
 		{
 			return TRUE;
 		}
