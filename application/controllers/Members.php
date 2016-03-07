@@ -14,11 +14,16 @@ class Members extends MY_Controller {
         
 	}
 
-    public function index()
+     public function index()
     {
-        //$this->load->view('home_view');
          $this->data['courses'] = $this->courses_model->get_all();
-         //var_dump($this->data['courses']);die();
+
+         if ($this->ion_auth->logged_in())
+         {
+         $user = $this->ion_auth->user()->row();
+         $this->data['user'] = $user;
+         }
+     
         $this->render('home_view');
     }
 
@@ -41,6 +46,8 @@ class Members extends MY_Controller {
             {
                 //redirect('dashboard');
                 echo "this is a test";
+                var_dump($this->ion_auth->user()->row());die();
+                $this->render('home_view');
             }
             else
             {

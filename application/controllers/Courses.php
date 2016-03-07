@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Courses extends CI_Controller {
+class Courses extends MY_Controller {
 
     function __construct() {
         //$this->groups = array('members'); //it means that only the users in members group have access to that particular controller
@@ -36,18 +36,52 @@ class Courses extends CI_Controller {
             }
         }
     }
-    
-    
-     public function view($user_id,$course_id) {
-        //$row = $this->courses_model->get($id);
-        $data['has_access'] = $this->courses_model->user_has_access($user_id, $course_id);
-        //echo $this->db->last_query();
-        //exit;
-        //var_dump($data['has_access']);die();
-         $data['row'] = $this->courses_model->with_topics('fields:name')->get($course_id); 
-         //var_dump($data);die();
-         $this->load->view('courses_view',$data);
+
+    function view($course_id) {
+
+        $this->data['has_access'] = FALSE;
+
+        if ($this->ion_auth->logged_in()) {
+            $user = $this->ion_auth->user()->row();
+            $this->data['has_access'] = $this->courses_model->user_has_access($user->id, $course_id);
+        }
+
+        $this->data['course'] = $this->courses_model->with_topics('fields:name,id')->get($course_id);
+        $this->render('courses_view');
+    }
+
+ function topic($topic_id) {
         
+        $has_access = FALSE;
+        
+        $topic = $this->topics_model->get($topic_id);
+        if($topic===FALSE)
+        {
+        	echo 'wherever you want because the topic doesnt exist';
+        }
+        else
+        {
+        	$course_id = $topic->course_id;
+          echo $course_id;
+        }
+        
+         if ($this->ion_auth->logged_in()) {
+            $user = $this->ion_auth->user()->row();
+            $has_access = $this->courses_model->user_has_access($user->id, $course_id);
+        }
+        
+        $this->data['has_access'] = $has_access;
+        
+        if(($has_access === TRUE) || (($has_access===FALSE) && $this->topics_model->where('free','1')->get($topic_id)))
+        {
+        	echo 'your topic is shown here';
+        }
+        else
+        {
+          echo 'pay, you mutha fckr! Yeah, Pay up bitch!';
+        }
     }
 
 }
+
+

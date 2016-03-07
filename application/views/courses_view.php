@@ -8,14 +8,17 @@
 
 var_dump($has_access);
 
-if ($has_access === false) {
-
-echo $row->name . '<br />';
-foreach ($row->topics as $topic) {
-    echo $topic->name . '<br />';
+ echo $course->name . '<br />';
+ 
+$i = 1;
+  foreach ($course->topics as $topic){
+    
+        echo "<a href='".base_url('courses/topic/'.$topic->id)."'>$topic->name</a><br />";
+    if($i>2 && ($has_access===FALSE)) {
+    	echo 'buy course to see this episode (topic)';
 }
-} else {
- echo 'you can have it all';
+    $i++;
 }
 ?>
+
 

@@ -10,6 +10,8 @@
 </form>
 
 
+
+
 <?php foreach ($courses as $course_item): ?>
 
 <a href="<?php echo base_url('courses/view/'.$course_item->id); ?>"><?php echo $course_item->name; ?></a>   

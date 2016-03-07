@@ -41,9 +41,18 @@ class Orders extends Auth_Controller {
     
        
 
-        function view($user_id,$course_id) {
-            $has_access = $this->Courses_model->user_has_access($user_id, $course_id);
+    
+
+        
+          function view($course_id) {
+           if ($this->ion_auth->logged_in())
+         {
+         $user = $this->ion_auth->user()->row();
+         //$has_access = $this->courses_model->user_has_access($user->id, $course_id); 
+          $has_access = $this->Courses_model->user_has_access($user->id, $course_id);
+         }
+         
+            
             var_dump($has_access);die();
         }
-
 }
