@@ -10,5 +10,10 @@ class Answers_info_model extends MY_Model
 {
  public $table = 'answers_info';
  
+     function __construct() {
+
+        $this->timestamps = FALSE;
+        parent::__construct();
+    }
  
 }

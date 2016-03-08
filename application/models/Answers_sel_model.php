@@ -10,6 +10,11 @@ class Answers_sel_model extends MY_Model
 {
  public $table = 'answers_sel';
  
+     function __construct() {
+
+        $this->timestamps = FALSE;
+        parent::__construct();
+    }
  
 }
 
