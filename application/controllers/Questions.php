@@ -88,38 +88,34 @@ class Questions extends MY_Controller {
 
     public function view_test($topic_id) {
 
-        $questions = $this->questions_model->where('topic_id',$topic_id)->with_answers('fields:answer,answer_info,correct')->get_all();
-        
+        $questions = $this->questions_model->where('topic_id', $topic_id)->with_answers('fields:answer,answer_info,correct')->get_all();
+
         $quiz = array();
-        if($questions)
-        {	
-        	foreach($questions as $question)
-          {
-          	$the_question = array();
-          	$the_question['ques'] = $question->question;
-            foreach($question->answers as $answer)
-            {
-          		$the_question['ansSel'] = array();
-            	if($answer->correct=='1')
-              {
-              	$the_question['ans'] = $answer->answer;
-                $the_question['ansInfo'] = $answer->answer_info;
-              }
-              else
-              {
-              	$the_question['ansSel'][] = $answer->answer;
-              }
+        if ($questions) {
+            foreach ($questions as $question) {
+                $the_question = array();
+                $the_question['ques'] = $question->question;
+                foreach ($question->answers as $answer) {
+                    $the_question['ansSel'] = array();
+                    if ($answer->correct == '1') {
+                        $the_question['ans'] = $answer->answer;
+                        $the_question['ansInfo'] = $answer->answer_info;
+                    } else {
+                        $the_question['ansSel'][] = $answer->answer;
+                    }
+                }
+                $quiz[] = $the_question;
             }
-            $quiz[] = $the_question;
-          }
         }
-        
+
         echo '<pre>';
         print_r($quiz);
         echo '</pre>';
         echo json_encode($quiz);
-  
-       
+        
+        $this->data['quiz'] = $quiz;
+        
+        $this->render('quiz_view');
     }
 
 }
