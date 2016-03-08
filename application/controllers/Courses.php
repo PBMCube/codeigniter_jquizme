@@ -50,38 +50,37 @@ class Courses extends MY_Controller {
         $this->render('courses_view');
     }
 
- function topic($topic_id) {
-        
+    function topic($topic_id) {
+
         $has_access = FALSE;
-        
+
         $topic = $this->topics_model->get($topic_id);
-        if($topic===FALSE)
-        {
-        	echo 'wherever you want because the topic doesnt exist';
+        if ($topic === FALSE) {
+            echo 'wherever you want because the topic doesnt exist';
+        } else {
+            $course_id = $topic->course_id;
+            echo $course_id;
         }
-        else
-        {
-        	$course_id = $topic->course_id;
-          echo $course_id;
-        }
-        
-         if ($this->ion_auth->logged_in()) {
+
+        if ($this->ion_auth->logged_in()) {
             $user = $this->ion_auth->user()->row();
             $has_access = $this->courses_model->user_has_access($user->id, $course_id);
         }
-        
+
         $this->data['has_access'] = $has_access;
-        
-        if(($has_access === TRUE) || (($has_access===FALSE) && $this->topics_model->where('free','1')->get($topic_id)))
-        {
-        	echo 'your topic is shown here';
-        }
-        else
-        {
-          echo 'pay, you mutha fckr! Yeah, Pay up bitch!';
+
+        if (($has_access === TRUE) || (($has_access === FALSE) && $this->topics_model->where('free', '1')->get($topic_id))) {
+            //echo 'your topic is shown here';
+
+            $this->data['book'] = array(
+                "title" => "JavaScript: The Definitive Guide",
+                "author" => "David Flanagan",
+                "edition" => 6
+            );
+            $this->render('quiz_view');
+        } else {
+            echo 'pay, you mutha fckr! Yeah, Pay up bitch!';
         }
     }
 
 }
-
-

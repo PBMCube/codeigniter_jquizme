@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/datepicker/datepicker3.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/daterangepicker/daterangepicker-bs3.css"); ?>">
         <link rel="stylesheet" href="<?php echo base_url("public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"); ?>">
+          <link rel="stylesheet" href="<?php echo base_url("public/css/jQuizMe-2.2.css"); ?>">
         
         
 
