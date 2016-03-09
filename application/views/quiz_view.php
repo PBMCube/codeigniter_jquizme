@@ -16,11 +16,28 @@ echo "\n</script>";
 $( function($){
     var quiz = <?php echo json_encode($quiz) ?>;
 
-	var options = {
-			addToEnd: " has what periodic symbol ?",
-			quizType: "fill"  //Or you can write fillInTheBlank instead of fill.
-	};
+
+ var options = {
+     addToEnd: " has what periodic symbol ?",
+            quizType: "fill"
+        };
+        options.statusUpdate = function( quizInfo, $quiz ){
+            if( quizInfo.hasQuit ){
+                //console.dir( quizInfo );
+                
+                var totalScore = quizInfo.score;
+                console.log(totalScore);
+                
+    
+                var url = "http://codeigniter_jquizme.dev/score/create/"+totalScore;
+                
+                $.post(url);
+                
+            }
+        };
+	
 	// quiz has 2 problems, while the options has set the quiz type to fill in the blank.
+        
 	$( "#quizArea" ).jQuizMe( quiz, options );
 	
 	//Display Version information.

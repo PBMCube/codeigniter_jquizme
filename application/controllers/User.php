@@ -70,4 +70,5 @@ $this->email->send();
 echo 'You have been activated';
 
 }
+
 }
