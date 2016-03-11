@@ -1,6 +1,6 @@
 
 
-$('.company').click(function(e){
+$('.edit').click(function(e){
     e.preventDefault();
     $('.content').html('<div class="row"><div class="text-center"><img src="public/dist/img/preloader.gif" /><div><div>');
     $.ajax({

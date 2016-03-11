@@ -11,6 +11,7 @@ class Courses extends MY_Controller {
         $this->load->library('ion_auth');
         $this->load->model('courses_model');
         $this->load->model('topics_model');
+        $this->load->model('questions_model');
     }
 
     public function index() {
@@ -71,13 +72,52 @@ class Courses extends MY_Controller {
 
         if (($has_access === TRUE) || (($has_access === FALSE) && $this->topics_model->where('free', '1')->get($topic_id))) {
             //echo 'your topic is shown here';
+            
+            //This is where we get the questions when the course is free
+            
+            $questions = $this->questions_model->where('topic_id', $topic_id)->with_answers('fields:answer,answer_info,correct')->get_all();
 
-            $this->data['book'] = array(
-                "title" => "JavaScript: The Definitive Guide",
-                "author" => "David Flanagan",
-                "edition" => 6
-            );
-            $this->render('quiz_view');
+        //print_r($questions);
+        //exit;
+
+        $quiz = array();
+        if ($questions) {
+            foreach ($questions as $question) {
+                $the_question = array();
+                $the_question['ques'] = $question->question;
+                foreach ($question->answers as $answer) {
+                    //$the_question['ansSel'] = array();
+                    if ($answer->correct == '1') {
+                        $the_question['ans'] = $answer->answer;
+                        $the_question['ansInfo'] = $answer->answer_info;
+                    } else {
+                        $the_question['ansSel'][] = $answer->answer;
+                    }
+                }
+                $quiz[] = $the_question;
+            }
+        }
+
+        /*  echo '<pre>';
+        print_r($quiz);
+        echo '</pre>';
+        echo json_encode($quiz); */
+        
+        
+        $data = array (
+    'quiz' => $quiz,
+    'message' => 'your topic is shown here'
+);
+
+        //echo json_encode($data);
+        $this->output->set_content_type('application/json')->set_output(json_encode($data));
+        //$this->data['quiz'] = $quiz;
+            
+            //
+            
+            //$this->load-view('quiz_view');
+            //$this->load->view('quiz_view');
+            
         } else {
             echo 'pay, you mutha fckr! Yeah, Pay up bitch!';
         }
