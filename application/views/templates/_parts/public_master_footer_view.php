@@ -54,7 +54,8 @@
       <script src="<?php echo base_url("public/plugins/iCheck/icheck.min.js"); ?>"></script>
       
          <!-- JQuize code -->
-      
+      <!-- JQuize code -->
+<script src="<?php echo base_url("public/js/jQuizMe-2.2.js"); ?>"></script>
  
     <script>
       $(function () {

@@ -54,7 +54,8 @@
            <!-- Custom code -->
       <script src="<?php echo base_url("public/js/application.js"); ?>"></script>
 
-  
+  <!-- JQuize code -->
+<script src="<?php echo base_url("public/js/jQuizMe-2.2.js"); ?>"></script>
 
 </body>
 </html>

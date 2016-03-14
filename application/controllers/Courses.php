@@ -60,7 +60,7 @@ class Courses extends MY_Controller {
             echo 'wherever you want because the topic doesnt exist';
         } else {
             $course_id = $topic->course_id;
-            echo $course_id;
+            //echo $course_id;
         }
 
         if ($this->ion_auth->logged_in()) {
@@ -72,54 +72,56 @@ class Courses extends MY_Controller {
 
         if (($has_access === TRUE) || (($has_access === FALSE) && $this->topics_model->where('free', '1')->get($topic_id))) {
             //echo 'your topic is shown here';
-            
             //This is where we get the questions when the course is free
-            
+
             $questions = $this->questions_model->where('topic_id', $topic_id)->with_answers('fields:answer,answer_info,correct')->get_all();
 
-        //print_r($questions);
-        //exit;
+            //print_r($questions);
+            //exit;
 
-        $quiz = array();
-        if ($questions) {
-            foreach ($questions as $question) {
-                $the_question = array();
-                $the_question['ques'] = $question->question;
-                foreach ($question->answers as $answer) {
-                    //$the_question['ansSel'] = array();
-                    if ($answer->correct == '1') {
-                        $the_question['ans'] = $answer->answer;
-                        $the_question['ansInfo'] = $answer->answer_info;
-                    } else {
-                        $the_question['ansSel'][] = $answer->answer;
+            $quiz = array();
+            if ($questions) {
+                foreach ($questions as $question) {
+                    $the_question = array();
+                    $the_question['ques'] = $question->question;
+                    foreach ($question->answers as $answer) {
+                        //$the_question['ansSel'] = array();
+                        if ($answer->correct == '1') {
+                            $the_question['ans'] = $answer->answer;
+                            $the_question['ansInfo'] = $answer->answer_info;
+                        } else {
+                            $the_question['ansSel'][] = $answer->answer;
+                        }
                     }
+                    $quiz[] = $the_question;
                 }
-                $quiz[] = $the_question;
             }
-        }
 
-        /*  echo '<pre>';
-        print_r($quiz);
-        echo '</pre>';
-        echo json_encode($quiz); */
-        
-        
-        $data = array (
-    'quiz' => $quiz,
-    'message' => 'your topic is shown here'
-);
+            /*  echo '<pre>';
+              print_r($quiz);
+              echo '</pre>';
+              echo json_encode($quiz); */
 
-        //echo json_encode($data);
-        $this->output->set_content_type('application/json')->set_output(json_encode($data));
-        //$this->data['quiz'] = $quiz;
-            
+
+            $data[] = array(
+                'quiz' => $quiz,
+                'message' => 'your topic is shown here'
+            );
+
+            //echo json_encode($data);
+            echo json_encode($data);
+            //$this->data['quiz'] = $quiz;
             //
             
             //$this->load-view('quiz_view');
             //$this->load->view('quiz_view');
-            
         } else {
-            echo 'pay, you mutha fckr! Yeah, Pay up bitch!';
+            $quiz = 0;
+            $data[] = array(
+                'quiz' => $quiz,
+                'message' => 'pay, you mutha fckr! Yeah, Pay up bitch!'
+            );
+            echo json_encode($data);
         }
     }
 
