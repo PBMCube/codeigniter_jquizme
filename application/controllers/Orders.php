@@ -39,6 +39,19 @@ class Orders extends Auth_Controller {
         //Insert into users_courses - user_id, order_id, course_id
     }
     
+    public function insert() {
+       //Permits you to add items to the shopping cart, as outlined above. 
+    }
+    
+    public function update() {
+      //Permits you to update items in the shopping cart, as outlined above.
+        
+    }
+    
+     public function total() {
+      //Displays the total amount in the cart.
+    }
+    
        
 
     
