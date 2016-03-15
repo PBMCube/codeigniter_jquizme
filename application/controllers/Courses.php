@@ -116,7 +116,7 @@ class Courses extends MY_Controller {
             //$this->load-view('quiz_view');
             //$this->load->view('quiz_view');
         } else {
-            $quiz = 0;
+$quiz = 0;
             $data[] = array(
                 'quiz' => $quiz,
                 'message' => 'pay, you mutha fckr! Yeah, Pay up bitch!'
