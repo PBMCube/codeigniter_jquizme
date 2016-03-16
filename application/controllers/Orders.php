@@ -14,7 +14,7 @@ class Orders extends MY_Controller {
         $this->load->model('courses_model');
     }
 
-    public function create($course_id) {
+    public function add_my_old_code($course_id) {
 
         if ($this->ion_auth->logged_in()) {
             $user = $this->ion_auth->user()->row();
@@ -55,23 +55,72 @@ class Orders extends MY_Controller {
         } else {
             redirect('register');
         }
+        
+    }
+
+        
+public function add($course_id) {
+	    
+    	$course = $this->courses_model->get($course_id); // THIS ONE SHOULD BE FIRST
+      
+      if($course===FALSE)
+      {
+        redirect();// REDIRECT TO THE COURSES PAGE...
+      }
+      
+      if ($this->ion_auth->logged_in())
+      {
+      	$user = $this->ion_auth->user()->row();
+        
+        if($this->courses_model->user_has_access($user->id,$course_id))
+        {
+        	redirect(); // REDIRECT TO THE COURSE TOPICS AS THE USER IS LOGGED IN AND HAS ACCESS TO THE COURSE
+        }
+        
+        $id = $this->orders_model->insert(array(
+                'order_num' => 1003,
+                'user_id' => $user->id,
+                'payed' => 0,
+            ));
+      	/*
 
 
+            if ($id) {
+
+                $this->users_courses_model->insert(array(
+                    'order_id' => $id,
+                    'user_id' => $user->id,
+                    'course_id' => $course_id,
+                ));
+            }
+            //create order if user is registered finished here
+          
+            //redirect to payment page
+          
+          var_dump($course);*/
+        
+         $this->data['user'] = $user;
+         $this->data['course'] = $course;
+    
+ 
+        $this->render('payment/payment_view'); 
+            //redirect to payment page finished here       
+      }
+      
+      else
+      {
+      	$_SESSION['buy_course'] = $course->id;
+      	redirect('register');
+      }
         //Insert into users_courses - user_id, order_id, course_id
     }
+    
+// DONE add course
 
-    public function insert() {
-        //Permits you to add items to the shopping cart, as outlined above. 
-    }
+        //Insert into users_courses - user_id, order_id, course_id
+    
 
-    public function update() {
-        //Permits you to update items in the shopping cart, as outlined above.
-    }
-
-    public function total() {
-        //Displays the total amount in the cart.
-    }
-
+   
     function view($course_id) {
         if ($this->ion_auth->logged_in()) {
             $user = $this->ion_auth->user()->row();

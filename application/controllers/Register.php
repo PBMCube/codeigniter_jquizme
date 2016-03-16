@@ -40,9 +40,20 @@ class Register extends MY_Controller
                 //redirect('user/login');
                  if($this->ion_auth->login($username, $password)) {
                    $user = $this->ion_auth->user()->row();
-                   var_dump($user);die();
+                   //var_dump($user);die();
+                   
+                   
+                   // HERE YOU DO A CHECK IF THE USER WANTED TO BUY A COURSE OR NOT
+                   if(isset($_SESSION['buy_course']))
+{
+										$course_id = $_SESSION['buy_course'];
+                  	unset($_SESSION['buy_course']);
+                   redirect('orders/add/'.$course_id);
+                  }
+                  else
+                  {
                     redirect('members');
-                }
+                	}
             }
             else
             {
@@ -52,4 +63,6 @@ class Register extends MY_Controller
             }
         }
     }
+}
+
 }

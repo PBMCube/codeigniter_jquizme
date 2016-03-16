@@ -23,7 +23,7 @@ foreach ($course->topics as $topic) {
         //echo '<a href="#" class="add">link</a>';
         //echo "<a class='add' id='" . $course->id . "' href='orders/create/'.$course->id'>add</a><br />";
         
-      echo anchor('orders/create/'.$course->id,'Add','class="add"');
+      echo anchor('orders/add/'.$course->id,'Add','class="add"');
         
         
     }
