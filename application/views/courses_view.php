@@ -18,14 +18,12 @@ $i = 1;
 foreach ($course->topics as $topic) {
 
     echo "<a class='course_details' href='" . $topic->id . "'>$topic->name</a><br />";
-    if ($i > 2 && ($has_access === FALSE)) { 
+    if ($i > 2 && ($has_access === FALSE)) {
         //echo 'buy course to see this episode (topic)';
         //echo '<a href="#" class="add">link</a>';
         //echo "<a class='add' id='" . $course->id . "' href='orders/create/'.$course->id'>add</a><br />";
-        
-      echo anchor('orders/add/'.$course->id,'Add','class="add"');
-        
-        
+
+        echo anchor('orders/add/' . $course->id, 'Add', 'class="add"');
     }
     $i++;
 }
@@ -69,57 +67,65 @@ foreach ($course->topics as $topic) {
 //console.log(obj[i].message)
                         //console.log(obj[i].quiz)
                         var questions = obj[i].quiz;
-if (questions.length == 0) {
-console.log("NO !");
- $('.assessment').html('<div class="no_qs">No questions<div>');
- 
-                    } else {
-                        //alert(JSON.stringify(questions));
+
+
+
+                        if (questions === undefined) {
+                            console.log('pay up');
+                            $('.assessment').html('<div class="no_qs">' + obj[i].message + '<div>');
+                        } else if (questions == 0) {
+                            console.log('no');
+                            $('.assessment').html('<div class="no_qs">No Quiz<div>');
+                        } else {
+                            console.log('quiz here');
+
+                            //alert(JSON.stringify(questions));
 //Convert string back to JSON for quiz to work                       
-                        var json = JSON.stringify(questions);
-                        var quiz = JSON.parse(json);
+                            var json = JSON.stringify(questions);
+                            var quiz = JSON.parse(json);
 //Convert string back to JSON for quiz to work    
 
-                        var options = {
-                            addToEnd: " has what periodic symbol ?",
-                            quizType: "fill"
-                        };
-                        options.statusUpdate = function (quizInfo, $quiz) {
-                            if (quizInfo.hasQuit) {
-                                //console.dir( quizInfo );
+                            var options = {
+                                addToEnd: " has what periodic symbol ?",
+                                quizType: "fill"
+                            };
+                            options.statusUpdate = function (quizInfo, $quiz) {
+                                if (quizInfo.hasQuit) {
+                                    //console.dir( quizInfo );
 
-                                var totalScore = quizInfo.score;
-                                //console.log(totalScore);
-                                console.log(topic_id);
+                                    var totalScore = quizInfo.score;
+                                    //console.log(totalScore);
+                                    console.log(topic_id);
 
 
-                                var url = "http://codeigniter_jquizme.dev/score/create/" + topic_id + "/" + totalScore;
-                                console.log(url);
+                                    var url = "http://codeigniter_jquizme.dev/score/create/" + topic_id + "/" + totalScore;
+                                    console.log(url);
 
-                                $.post(url);
+                                    $.post(url);
 
+                                }
+                            };
+
+                            // quiz has 2 problems, while the options has set the quiz type to fill in the blank.
+                            $('.assessment').html('<div class="quizArea"><div>');
+
+                            $(".quizArea").jQuizMe(quiz, options);
+
+                            //Display Version information.
+                            //$( "#jqueryVersion" ).text( $.fn.jquery );
+                            //$( "#jQuizMeVersion" ).text( $.fn.jQuizMe.version );
+                            //Add quiz
+
+                            for (i = 0; i < questions.length; i++) {
+
+                                console.log(questions[i].ques)
+                                console.log(questions[i].ans)
+                                console.log(questions[i].ansInfo)
+                                console.log(questions[i].ansSel)
                             }
-                        };
-
-                        // quiz has 2 problems, while the options has set the quiz type to fill in the blank.
-                        $('.assessment').html('<div class="quizArea"><div>');
-
-                        $(".quizArea").jQuizMe(quiz, options);
-                        
-                         //Display Version information.
-                        //$( "#jqueryVersion" ).text( $.fn.jquery );
-                        //$( "#jQuizMeVersion" ).text( $.fn.jQuizMe.version );
-                        //Add quiz
-
-                        for (i = 0; i < questions.length; i++) {
-
-                            console.log(questions[i].ques)
-                            console.log(questions[i].ans)
-                            console.log(questions[i].ansInfo)
-                            console.log(questions[i].ansSel)
                         }
-                    }
-                       
+
+
                     }
                 },
                 error: function () {
@@ -134,22 +140,22 @@ console.log("NO !");
 //shopping cart ajax
 
         //$('.add').click(function (e) {
-           // e.preventDefault();
-           // var course_id = $(this).attr("id");
-           // var course_name = $(this).attr("href");
-           // console.log(course_id);
-           // console.log(course_name);
-           // $.ajax({
-               // url: 'http://codeigniter_jquizme.dev/cart/add/' + course_id,
-               // success: function (data) {
-              //  },
-             //   error: function () {
-             //   },
-              //  complete: function () {
-              //  }
-          //  });
-            
-       // });
+        // e.preventDefault();
+        // var course_id = $(this).attr("id");
+        // var course_name = $(this).attr("href");
+        // console.log(course_id);
+        // console.log(course_name);
+        // $.ajax({
+        // url: 'http://codeigniter_jquizme.dev/cart/add/' + course_id,
+        // success: function (data) {
+        //  },
+        //   error: function () {
+        //   },
+        //  complete: function () {
+        //  }
+        //  });
+
+        // });
 
 //shopping cart ajax
 
