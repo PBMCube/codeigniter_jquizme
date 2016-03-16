@@ -6,3 +6,6 @@
  * and open the template in the editor.
  */
 var_dump($course);
+var_dump($order_ref);
+
+ echo anchor('payment/checkout','Add','class="add"');

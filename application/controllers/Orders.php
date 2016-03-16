@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Orders extends MY_Controller {
 
     function __construct() {
-        $this->groups = array('members'); //it means that only the users in members group have access to that particular controller
+        //$this->groups = array('members'); //it means that only the users in members group have access to that particular controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('ion_auth');
@@ -76,12 +76,18 @@ public function add($course_id) {
         {
         	redirect(); // REDIRECT TO THE COURSE TOPICS AS THE USER IS LOGGED IN AND HAS ACCESS TO THE COURSE
         }
+        //create unique order number CrsN_number_here_ = course_id, Usr_id_number_here = user_id
+        $order_num = 'CrsN' . $course_id . 'UsrN' . $user->id;
+        //var_dump($order_num);
         
         $id = $this->orders_model->insert(array(
-                'order_num' => 1003,
+            
+                'order_num' => $order_num,
                 'user_id' => $user->id,
                 'payed' => 0,
             ));
+        
+        	
       	/*
 
 
@@ -98,7 +104,7 @@ public function add($course_id) {
             //redirect to payment page
           
           var_dump($course);*/
-        
+        $this->data['order_ref'] = $order_num;
          $this->data['user'] = $user;
          $this->data['course'] = $course;
     
