@@ -18,10 +18,14 @@ $i = 1;
 foreach ($course->topics as $topic) {
 
     echo "<a class='course_details' href='" . $topic->id . "'>$topic->name</a><br />";
-    if ($i > 2 && ($has_access === FALSE)) {
+    if ($i > 2 && ($has_access === FALSE)) { 
         //echo 'buy course to see this episode (topic)';
         //echo '<a href="#" class="add">link</a>';
-        echo "<a class='add' id='" . $course->id . "' href='" . $course->name . "'>add</a><br />";
+        //echo "<a class='add' id='" . $course->id . "' href='orders/create/'.$course->id'>add</a><br />";
+        
+      echo anchor('orders/create/'.$course->id,'Add','class="add"');
+        
+        
     }
     $i++;
 }
@@ -123,23 +127,23 @@ foreach ($course->topics as $topic) {
 
 //shopping cart ajax
 
-        $('.add').click(function (e) {
-            e.preventDefault();
-            var course_id = $(this).attr("id");
-            var course_name = $(this).attr("href");
-            console.log(course_id);
-            console.log(course_name);
-            $.ajax({
-                url: 'http://codeigniter_jquizme.dev/cart/add/' + course_id,
-                success: function (data) {
-                },
-                error: function () {
-                },
-                complete: function () {
-                }
-            });
+        //$('.add').click(function (e) {
+           // e.preventDefault();
+           // var course_id = $(this).attr("id");
+           // var course_name = $(this).attr("href");
+           // console.log(course_id);
+           // console.log(course_name);
+           // $.ajax({
+               // url: 'http://codeigniter_jquizme.dev/cart/add/' + course_id,
+               // success: function (data) {
+              //  },
+             //   error: function () {
+             //   },
+              //  complete: function () {
+              //  }
+          //  });
             
-        });
+       // });
 
 //shopping cart ajax
 
