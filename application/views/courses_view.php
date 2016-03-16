@@ -69,8 +69,12 @@ foreach ($course->topics as $topic) {
 //console.log(obj[i].message)
                         //console.log(obj[i].quiz)
                         var questions = obj[i].quiz;
-
-//alert(JSON.stringify(questions));
+if (questions.length == 0) {
+console.log("NO !");
+ $('.assessment').html('<div class="no_qs">No questions<div>');
+ 
+                    } else {
+                        //alert(JSON.stringify(questions));
 //Convert string back to JSON for quiz to work                       
                         var json = JSON.stringify(questions);
                         var quiz = JSON.parse(json);
@@ -101,8 +105,8 @@ foreach ($course->topics as $topic) {
                         $('.assessment').html('<div class="quizArea"><div>');
 
                         $(".quizArea").jQuizMe(quiz, options);
-
-                        //Display Version information.
+                        
+                         //Display Version information.
                         //$( "#jqueryVersion" ).text( $.fn.jquery );
                         //$( "#jQuizMeVersion" ).text( $.fn.jQuizMe.version );
                         //Add quiz
@@ -114,6 +118,8 @@ foreach ($course->topics as $topic) {
                             console.log(questions[i].ansInfo)
                             console.log(questions[i].ansSel)
                         }
+                    }
+                       
                     }
                 },
                 error: function () {

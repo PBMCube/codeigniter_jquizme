@@ -10,13 +10,13 @@ var_dump($order_ref);
 ?>
 
 
-    <?php echo form_open('payment/checkout');?>
-    
-
+<?php echo form_open('payment/checkout');?>
 <input type="hidden" name="order_ref" value="<?php echo ($course->name); ?>" />
 <input type="hidden" name="course_name" value="<?php echo ($order_ref); ?>" />
 <input type="hidden" name="bank_info" value="bank_info" />
-
+<input type="radio" name="bank_info" value="bank_deposit" checked="checked"/>
+<input type="radio" name="bank_info" value="eft"  />
+<input type="radio" name="bank_info" value="paypal"  />
 <input type="submit" value="go">
 </form>
 
