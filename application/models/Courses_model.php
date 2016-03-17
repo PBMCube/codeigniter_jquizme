@@ -29,7 +29,7 @@ public function user_has_access($user_id, $course_id)
 		$this->db->where('orders.payed', '1');
 		$this->db->limit(1);
 		$this->db->join('users_courses','courses.id = users_courses.course_id', 'left');
-		$this->db->join('orders','users_courses.order_id = orders.order_id', 'left');
+                $this->db->join('orders','users_courses.order_id = orders.order_id', 'left');
     $query = $this->db->get('courses');
     if($query->num_rows())
 		{

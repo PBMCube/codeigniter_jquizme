@@ -53,10 +53,15 @@ class Activate extends MY_Controller {
          */
         
         $payed = 1;
-        if ($this->orders_model->where(array('order_num' => $order_num))->get()) { //struggling here on how to query the db if this record exists
+        if ($order = $this->orders_model->where(array('order_num' => $order_num))->get()) { //struggling here on how to query the db if this record exists
+            
             $this->orders_model->update(array('payed' => $payed));
             $user = $this->orders_model->with_user('fields:first_name,last_name,email')->get($order_num);
             $course = $this->orders_model->with_course('fields:name')->get($order_num);
+            
+            //var_dump($user->user->id);die();
+            
+            $this->users_courses_model->insert(array('user_id' => $user->user->id, 'order_id' => $order->order_id, 'course_id' => $course->course->id));
              
             //$user = $this->users_model->with_user('fields:first_name,last_name,email')->get($user_id);
 

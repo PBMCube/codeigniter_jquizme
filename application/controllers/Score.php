@@ -18,8 +18,12 @@ class Score extends MY_Controller {
     }
 
  public function create($topic_id) {
+     
+    
 
         $topic = $this->topics_model->get($topic_id);
+     
+     
         
         if($topic===false)
         {
@@ -27,10 +31,14 @@ class Score extends MY_Controller {
         }
         
         $course_id = $topic->course_id;
+        
 
         if ($this->ion_auth->logged_in()) {
             $user = $this->ion_auth->user()->row();
+           
             $has_access = $this->courses_model->user_has_access($user->id, $course_id);
+            
+             //var_dump($has_access);die();
         }
 
         if ($has_access === TRUE) {
