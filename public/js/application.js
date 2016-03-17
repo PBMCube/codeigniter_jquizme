@@ -1,10 +1,10 @@
 
-
 $('.edit').click(function(e){
     e.preventDefault();
-    $('.content').html('<div class="row"><div class="text-center"><img src="public/dist/img/preloader.gif" /><div><div>');
+    
+    $('.content').html('<div class="row"><div class="text-center"><img src="http://codeigniter_jquizme.dev/public/dist/img/preloader.gif" /><div><div>');
     $.ajax({
-url: 'Jquizme',
+url: 'http://codeigniter_jquizme.dev/Jquizme',
     	dataType: 'html',
     	success: function(data){
                  console.log(data);

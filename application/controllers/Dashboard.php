@@ -19,6 +19,8 @@ class Dashboard extends Auth_Controller {
 
         $this->data['user'] = $this->ion_auth->user()->row();
         $this->data['loggedin'] = $loggedin;
+        
+        $this->data['pageTitle'] = 'Dashboard';
 
         $this->render('dashboard/index_view');
     }

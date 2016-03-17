@@ -1,109 +1,135 @@
- <!--simple clone demo start-->
-
-        <!--simple clone demo end-->
-        
-                <!--nested clone demo start-->
-        <div class="nest-clone demo-wrap">
-            <h2>Create Asset</h2>
-           
-           
-
-<form>
-
-<div class="toclone">
-                    
-                    <p class="name"> 
-                      
-                       
-                         <input type="text" name="title" /> 
-                        <label for="name">Title</label> 
-                    </p> 
-                    
-                      <label for="course">Questions type</label><br />
-  <input type="radio" name="type" value="fill"> fill in the blanks<br>
-  <input type="radio" name="type" value="multi">Dropdown<br>
-  <input type="radio" name="type" value="multiList">multiple choice<br>
-  <input type="radio" name="type" value="trueOrFalse">true Or False<br>
-  <input type="radio" name="type" value="flashCards">flash Cards<br>
-  
-                    <div class="nest-clone inner-wrap">
-                        <div class="toclone">
-                            <strong>Questions</strong>
-                            <p class="ques"> 
-                                <input type="text" name="question[0][ques]" /> 
-                                <label for="ques">Set Question</label> 
-                            </p> 
-                            
-                            <p class="ans"> 
-                                <input type="text" name="question[0][ans]" /> 
-                                <label for="ans">Correct Answer</label> 
-                            </p>
-
-                            <p class="ansInfo"> 
-                                <input type="text" name="question[0][ansInfo]" /> 
-                                <label for="ansInfo">answer Info</label> 
-                            </p>
-                            
-                            
-                            <div class="nest-clone inner-inner-wrap">
-                                <div class="toclone">
-                                    <strong>Answer set</strong>
-                                    <p class="ansSet"> 
-                                        <input type="text" name="ansSet[]" id="addphone" /> 
-                                        <label for="ansSet">Answer option</label> 
-                                    </p>  
-                                    <a href="#" class="clone">clone</a>
-                                    <a href="#" class="delete">delete</a>
-                                </div>
-                            </div>
-
-                            
-
-                              
-                           
-                            <a href="#" class="clone">clone</a>
-                            <a href="#" class="delete">delete</a>
-                        </div>
+<div class="box box-warning">
+                <div class="box-header with-border">
+                  <h3 class="box-title">General Elements</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <form role="form">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Asset Title</label>
+                      <input type="text" class="form-control" placeholder="Enter ...">
                     </div>
-                    <!-- <a href="#" class="clone">clone</a>
-                    <a href="#" class="delete">delete</a> -->
-                </div>
+                    <div class="form-group">
+                      <label>Text Disabled</label>
+                      <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                    </div>
 
-                <p class="submit"> 
-                   
-                     <input type="button" id="Save" value="Save" />
-                </p> 
+                    <!-- textarea -->
+                    <div class="form-group">
+                      <label>Textarea</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Textarea Disabled</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
+                    </div>
 
-            </form>
-        </div>
-        <!--nested clone demo end-->
- 
-<script type="text/javascript" src="<?php echo base_url("public/js/jquery.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("public/js/jquery-cloneya.min.js"); ?>"></script>
+                    <!-- input states -->
+                    <div class="form-group has-success">
+                      <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
+                      <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
+                    </div>
+                    <div class="form-group has-warning">
+                      <label class="control-label" for="inputWarning"><i class="fa fa-bell-o"></i> Input with warning</label>
+                      <input type="text" class="form-control" id="inputWarning" placeholder="Enter ...">
+                    </div>
+                    <div class="form-group has-error">
+                      <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with error</label>
+                      <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
+                    </div>
+
+                    <!-- checkbox -->
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Checkbox 1
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">
+                          Checkbox 2
+                        </label>
+                      </div>
+
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" disabled>
+                          Checkbox disabled
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- radio -->
+                    <div class="form-group">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                          Option one is this and that&mdash;be sure to include why it's great
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                          Option two can be something else and selecting it will deselect option one
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                          Option three is disabled
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- select -->
+                    <div class="form-group">
+                      <label>Select</label>
+                      <select class="form-control">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Select Disabled</label>
+                      <select class="form-control" disabled>
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+
+                    <!-- Select multiple-->
+                    <div class="form-group">
+                      <label>Select Multiple</label>
+                      <select multiple class="form-control">
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Select Multiple Disabled</label>
+                      <select multiple class="form-control" disabled>
+                        <option>option 1</option>
+                        <option>option 2</option>
+                        <option>option 3</option>
+                        <option>option 4</option>
+                        <option>option 5</option>
+                      </select>
+                    </div>
+
+                  </form>
+                </div><!-- /.box-body -->
+              </div>
 
 
-
-<script type="text/javascript">
-
-$(document).ready(function() {
- 
-
- 
- 
-$('.nest-clone').cloneya({
-serializeIndex     : true,
-preserveChildCount  : true
-
-});
-
-
-        
-
-
-});  
-
-</script>
-
-     <!-- iCheck -->
-      <script src="<?php echo base_url("public/plugins/iCheck/icheck.min.js"); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url("public/js/application.js"); ?>"></script>

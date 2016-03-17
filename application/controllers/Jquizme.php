@@ -57,6 +57,7 @@ class Jquizme extends CI_Controller {
     public function index() {
 
         //$data['main_content'] = 'jquizme';
+         $data['pageTitle'] = 'Asset Creator';
         $this->load->view('jquizme_create');
     }
     

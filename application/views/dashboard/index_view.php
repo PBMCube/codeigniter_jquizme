@@ -284,7 +284,7 @@
             <li class="header">MAIN NAVIGATION</li>
             
             
-            <li><a href="" class="company"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li><a href="" class="edit"><i class="fa fa-book"></i> <span>Create asset</span></a></li>
            
             
           </ul>
@@ -297,7 +297,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
+            <?php echo $pageTitle ?>
             <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
