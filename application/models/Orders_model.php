@@ -14,6 +14,8 @@ class Orders_model extends MY_Model {
 
         $this->timestamps = FALSE;
         parent::__construct();
+        //$this->has_many['users'] = array('foreign_model'=>'Users_model','foreign_table'=>'users','foreign_key'=>'user_id','local_key'=>'user_id');
+        $this->has_one['user'] = array('foreign_model' => 'Users_model', 'foreign_table' => 'users', 'foreign_key' => 'id', 'local_key' => 'user_id');
     }
 
 }

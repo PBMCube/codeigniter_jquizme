@@ -46,7 +46,7 @@ class Register extends MY_Controller
                    // HERE YOU DO A CHECK IF THE USER WANTED TO BUY A COURSE OR NOT
                    if(isset($_SESSION['buy_course']))
 {
-										$course_id = $_SESSION['buy_course'];
+			$course_id = $_SESSION['buy_course'];
                   	unset($_SESSION['buy_course']);
                    redirect('orders/add/'.$course_id);
                   }
