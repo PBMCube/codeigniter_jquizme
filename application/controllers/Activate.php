@@ -25,29 +25,53 @@ class Activate extends MY_Controller {
         $this->load->view('activate/activate_view', $data);
     }
 
-    public function activate($user_id) {
+    public function activate($order_num) {
+        
+       $data['users'] = $this->orders_model->with_user('fields:first_name,last_name,email')->get_all();
         /*$user = $this->users_model->with_user('fields:first_name,last_name,email')->get($user_id);
         
         echo '<pre>';
         print_r($user->email);
         echo '</pre>';
-        die();*/
+        die();
+        
+         $user = $this->orders_model->with_user('fields:first_name,last_name,email')->get($order_num);
+         
+          echo '<pre>';
+        print_r($user->user->email);
+        echo '</pre>';
+        die();
+        
+        
+         $course = $this->orders_model->with_course('fields:name')->get($order_num);
+         
+          echo '<pre>';
+        print_r($course->course->name);
+        echo '</pre>';
+        die();
+         * 
+         */
         
         $payed = 1;
-        if ($this->orders_model->where(array('user_id' => $user_id))->get()) { //struggling here on how to query the db if this record exists
+        if ($this->orders_model->where(array('order_num' => $order_num))->get()) { //struggling here on how to query the db if this record exists
             $this->orders_model->update(array('payed' => $payed));
-            $user = $this->users_model->with_user('fields:first_name,last_name,email')->get($user_id);
+            $user = $this->orders_model->with_user('fields:first_name,last_name,email')->get($order_num);
+            $course = $this->orders_model->with_course('fields:name')->get($order_num);
+             
+            //$user = $this->users_model->with_user('fields:first_name,last_name,email')->get($user_id);
 
             $this->load->library('email');
             $this->email->from('absmugz09@gmail.com', 'Absolom');
-            $this->email->to($user->email);
+            $this->email->to($user->user->email);
 
 
             $this->email->subject('You have been activated');
-            $this->email->message('Thank you for paying');
+            $this->email->message('Thank you for paying for'. $course->course->name);
 
             $this->email->send();
         }
+        
+         redirect('activate');
     }
 
 }

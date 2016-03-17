@@ -17,6 +17,7 @@ class Members extends MY_Controller {
      public function index()
     {
          $this->data['courses'] = $this->courses_model->get_all();
+         //var_dump($this->data['courses']);die();
 
          if ($this->ion_auth->logged_in())
          {

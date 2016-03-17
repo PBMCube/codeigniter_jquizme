@@ -28,7 +28,8 @@ if ($users) {
             <td><?php echo ($user->user->email); ?></td>
             <?php
             if ($user->payed == 0) {
-                echo '<td>'.anchor('activate/activate/'.$user->user->id, 'do it').'</td>';
+                //echo '<td>'.anchor('activate/activate/'.$user->user->id, 'do it').'</td>';
+                echo '<td>'.anchor('activate/activate/'.$user->order_num, 'do it').'</td>';
             } else {
                 echo '<td>done</td>';
             }
